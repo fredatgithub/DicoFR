@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using WordLibrary;
 
 namespace DicoFR
 {
@@ -54,23 +54,25 @@ namespace DicoFR
       listBoxWords.Items.Clear();
       foreach (var word in listOfWords)
       {
-        var newWord = RemovePunctuation(word);
-        if (newWord.Contains("'"))
+        var newWord = Words.RemovePunctuation(word);
+        newWord = Words.SplitTwoWordsIfItHasQuote(newWord);
+        if (newWord.Contains("|"))
         {
-          int position = newWord.IndexOf("'");
-          listBoxWords.Items.Add(newWord.Substring(0, position));
-          AddVerification(newWord);
-          listBoxWords.Items.Add(newWord.Substring(position + 1));
-          AddVerification(newWord);
+          var position = newWord.IndexOf("|");
+          var splittedNewWord = newWord.Substring(0, position);
+          listBoxWords.Items.Add(splittedNewWord);
+          AddVerification(splittedNewWord);
+          splittedNewWord = newWord.Substring(position + 1);
+          listBoxWords.Items.Add(splittedNewWord);
+          AddVerification(splittedNewWord);
           continue;
         }
 
         if (!string.IsNullOrEmpty(newWord))
         {
-          listBoxWords.Items.Add(newWord);
-          AddVerification(newWord);
+          listBoxWords.Items.Add(AddIfNotAlreadyIn(newWord, listBoxWords));
+          AddVerification(AddIfNotAlreadyIn(newWord, textBoxVerif));
         }
-
       }
 
       labelCount.Text = $"Count: {listBoxWords.Items.Count}";
@@ -78,30 +80,20 @@ namespace DicoFR
 
     private void AddVerification(string newWord)
     {
-      textBoxVerif.Text += $"{newWord}{Environment.NewLine}";
-    }
-
-    private string RemovePunctuation(string word)
-    {
-      word = word.Trim();
-      word = word.ToLower();
-      word = word.Replace(".", "");
-      word = word.Replace(",", "");
-      // remove numbers
-      if (RemoveNumbers(word).Length == 0)
+      if (!string.IsNullOrEmpty(newWord))
       {
-        return string.Empty;
+        textBoxVerif.Text += $"{newWord}{Environment.NewLine}";
       }
-
-      word = RemoveNumbers(word).Trim();
-      return word;
     }
 
-    public static string RemoveNumbers(string input)
+    private string AddIfNotAlreadyIn(string word, ListBox listBox)
     {
-      // Use a regular expression to match any digit (\d) and replace it with an empty string.
-      string result = Regex.Replace(input, @"\d", "");
-      return result;
+      return listBox.Items.Contains(word) ? string.Empty : word;
+    }
+
+    private string AddIfNotAlreadyIn(string word, TextBox textBox)
+    {
+      return textBox.Text.Contains(word) ? string.Empty : word;
     }
   }
 }
