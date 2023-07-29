@@ -33,9 +33,9 @@ namespace WordLibrary
       if (word.Contains("'"))
       {
         int position = word.IndexOf("'");
-        result = word.Substring(0, position);
+        result = word.Substring(0, position + 1);
         result += "|";
-        result = word.Substring(position + 1);
+        result += word.Substring(position + 1);
       }
       else
       {
