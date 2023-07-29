@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("DicoFR")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CreateDictionary")]
+[assembly: AssemblyDescription("Creation of a file with all the words for a language")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DicoFR")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Freddy Juhel")]
+[assembly: AssemblyProduct("CreateDictionary")]
+[assembly: AssemblyCopyright("Copyright ©  2023 MIT Freddy Juhel")]
+[assembly: AssemblyTrademark("Freddy Juhel")]
 [assembly: AssemblyCulture("")]
 
 // L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly

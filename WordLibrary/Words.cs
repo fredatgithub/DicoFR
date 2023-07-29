@@ -17,7 +17,6 @@ namespace WordLibrary
       word = word.ToLower();
       word = word.Replace(".", "");
       word = word.Replace(",", "");
-      // remove numbers
       if (RemoveNumbers(word).Length == 0)
       {
         return string.Empty;

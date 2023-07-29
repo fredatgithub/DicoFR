@@ -67,6 +67,8 @@
       this.progressBarMain = new System.Windows.Forms.ProgressBar();
       this.labelCount = new System.Windows.Forms.Label();
       this.textBoxVerif = new System.Windows.Forms.TextBox();
+      this.buttonSaveToFile = new System.Windows.Forms.Button();
+      this.buttonAddToMasterFile = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -77,7 +79,7 @@
       this.textBoxSource.Multiline = true;
       this.textBoxSource.Name = "textBoxSource";
       this.textBoxSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxSource.Size = new System.Drawing.Size(534, 979);
+      this.textBoxSource.Size = new System.Drawing.Size(534, 924);
       this.textBoxSource.TabIndex = 0;
       this.textBoxSource.Text = resources.GetString("textBoxSource.Text");
       // 
@@ -336,7 +338,7 @@
       this.listBoxWords.Location = new System.Drawing.Point(894, 142);
       this.listBoxWords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.listBoxWords.Name = "listBoxWords";
-      this.listBoxWords.Size = new System.Drawing.Size(216, 924);
+      this.listBoxWords.Size = new System.Drawing.Size(216, 864);
       this.listBoxWords.Sorted = true;
       this.listBoxWords.TabIndex = 3;
       // 
@@ -358,6 +360,7 @@
       this.comboBoxLanguage.Name = "comboBoxLanguage";
       this.comboBoxLanguage.Size = new System.Drawing.Size(180, 28);
       this.comboBoxLanguage.TabIndex = 5;
+      this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguage_SelectedIndexChanged);
       // 
       // progressBarMain
       // 
@@ -371,7 +374,7 @@
       // labelCount
       // 
       this.labelCount.AutoSize = true;
-      this.labelCount.Location = new System.Drawing.Point(890, 1086);
+      this.labelCount.Location = new System.Drawing.Point(890, 1033);
       this.labelCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.labelCount.Name = "labelCount";
       this.labelCount.Size = new System.Drawing.Size(65, 20);
@@ -385,14 +388,38 @@
       this.textBoxVerif.Multiline = true;
       this.textBoxVerif.Name = "textBoxVerif";
       this.textBoxVerif.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxVerif.Size = new System.Drawing.Size(236, 924);
+      this.textBoxVerif.Size = new System.Drawing.Size(236, 864);
       this.textBoxVerif.TabIndex = 8;
+      // 
+      // buttonSaveToFile
+      // 
+      this.buttonSaveToFile.Location = new System.Drawing.Point(634, 308);
+      this.buttonSaveToFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonSaveToFile.Name = "buttonSaveToFile";
+      this.buttonSaveToFile.Size = new System.Drawing.Size(112, 35);
+      this.buttonSaveToFile.TabIndex = 9;
+      this.buttonSaveToFile.Text = "Save to file";
+      this.buttonSaveToFile.UseVisualStyleBackColor = true;
+      this.buttonSaveToFile.Click += new System.EventHandler(this.ButtonSaveToFile_Click);
+      // 
+      // buttonAddToMasterFile
+      // 
+      this.buttonAddToMasterFile.Location = new System.Drawing.Point(634, 353);
+      this.buttonAddToMasterFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonAddToMasterFile.Name = "buttonAddToMasterFile";
+      this.buttonAddToMasterFile.Size = new System.Drawing.Size(151, 35);
+      this.buttonAddToMasterFile.TabIndex = 10;
+      this.buttonAddToMasterFile.Text = "Add to master file";
+      this.buttonAddToMasterFile.UseVisualStyleBackColor = true;
+      this.buttonAddToMasterFile.Click += new System.EventHandler(this.ButtonAddToMasterFile_Click);
       // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1758, 1181);
+      this.Controls.Add(this.buttonAddToMasterFile);
+      this.Controls.Add(this.buttonSaveToFile);
       this.Controls.Add(this.textBoxVerif);
       this.Controls.Add(this.labelCount);
       this.Controls.Add(this.progressBarMain);
@@ -456,6 +483,8 @@
     private System.Windows.Forms.ProgressBar progressBarMain;
     private System.Windows.Forms.Label labelCount;
     private System.Windows.Forms.TextBox textBoxVerif;
+    private System.Windows.Forms.Button buttonSaveToFile;
+    private System.Windows.Forms.Button buttonAddToMasterFile;
   }
 }
 
