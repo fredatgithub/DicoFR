@@ -62,23 +62,30 @@
       this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
       this.àproposdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.listBoxWords = new System.Windows.Forms.ListBox();
+      this.labelLanguage = new System.Windows.Forms.Label();
+      this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
+      this.progressBarMain = new System.Windows.Forms.ProgressBar();
+      this.labelCount = new System.Windows.Forms.Label();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // textBoxSource
       // 
-      this.textBoxSource.Location = new System.Drawing.Point(43, 92);
+      this.textBoxSource.Location = new System.Drawing.Point(64, 142);
+      this.textBoxSource.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.textBoxSource.Multiline = true;
       this.textBoxSource.Name = "textBoxSource";
       this.textBoxSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxSource.Size = new System.Drawing.Size(598, 739);
+      this.textBoxSource.Size = new System.Drawing.Size(534, 979);
       this.textBoxSource.TabIndex = 0;
+      this.textBoxSource.Text = resources.GetString("textBoxSource.Text");
       // 
       // buttonExtract
       // 
-      this.buttonExtract.Location = new System.Drawing.Point(674, 92);
+      this.buttonExtract.Location = new System.Drawing.Point(630, 263);
+      this.buttonExtract.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonExtract.Name = "buttonExtract";
-      this.buttonExtract.Size = new System.Drawing.Size(75, 23);
+      this.buttonExtract.Size = new System.Drawing.Size(112, 35);
       this.buttonExtract.TabIndex = 1;
       this.buttonExtract.Text = "Extract -->";
       this.buttonExtract.UseVisualStyleBackColor = true;
@@ -93,7 +100,8 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1172, 24);
+      this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+      this.menuStrip1.Size = new System.Drawing.Size(1758, 25);
       this.menuStrip1.TabIndex = 2;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -111,7 +119,7 @@
             this.toolStripSeparator2,
             this.quitterToolStripMenuItem});
       this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+      this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 19);
       this.fichierToolStripMenuItem.Text = "&Fichier";
       // 
       // nouveauToolStripMenuItem
@@ -184,7 +192,7 @@
       this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
       this.quitterToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.quitterToolStripMenuItem.Text = "&Quitter";
-      this.quitterToolStripMenuItem.Click += new System.EventHandler(this.quitterToolStripMenuItem_Click);
+      this.quitterToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
       // 
       // editionToolStripMenuItem
       // 
@@ -198,27 +206,27 @@
             this.toolStripSeparator4,
             this.sélectionnertoutToolStripMenuItem});
       this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
-      this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+      this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 19);
       this.editionToolStripMenuItem.Text = "&Edition";
       // 
       // annulerToolStripMenuItem
       // 
       this.annulerToolStripMenuItem.Name = "annulerToolStripMenuItem";
       this.annulerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-      this.annulerToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.annulerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.annulerToolStripMenuItem.Text = "&Annuler";
       // 
       // rétablirToolStripMenuItem
       // 
       this.rétablirToolStripMenuItem.Name = "rétablirToolStripMenuItem";
       this.rétablirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-      this.rétablirToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.rétablirToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.rétablirToolStripMenuItem.Text = "&Rétablir";
       // 
       // toolStripSeparator3
       // 
       this.toolStripSeparator3.Name = "toolStripSeparator3";
-      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 6);
+      this.toolStripSeparator3.Size = new System.Drawing.Size(161, 6);
       // 
       // couperToolStripMenuItem
       // 
@@ -226,7 +234,7 @@
       this.couperToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.couperToolStripMenuItem.Name = "couperToolStripMenuItem";
       this.couperToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-      this.couperToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.couperToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.couperToolStripMenuItem.Text = "&Couper";
       // 
       // copierToolStripMenuItem
@@ -235,7 +243,7 @@
       this.copierToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.copierToolStripMenuItem.Name = "copierToolStripMenuItem";
       this.copierToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-      this.copierToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.copierToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.copierToolStripMenuItem.Text = "Co&pier";
       // 
       // collerToolStripMenuItem
@@ -244,18 +252,18 @@
       this.collerToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.collerToolStripMenuItem.Name = "collerToolStripMenuItem";
       this.collerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-      this.collerToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.collerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.collerToolStripMenuItem.Text = "Co&ller";
       // 
       // toolStripSeparator4
       // 
       this.toolStripSeparator4.Name = "toolStripSeparator4";
-      this.toolStripSeparator4.Size = new System.Drawing.Size(6, 6);
+      this.toolStripSeparator4.Size = new System.Drawing.Size(161, 6);
       // 
       // sélectionnertoutToolStripMenuItem
       // 
       this.sélectionnertoutToolStripMenuItem.Name = "sélectionnertoutToolStripMenuItem";
-      this.sélectionnertoutToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.sélectionnertoutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.sélectionnertoutToolStripMenuItem.Text = "Sélectio&nner tout";
       // 
       // outilsToolStripMenuItem
@@ -264,19 +272,19 @@
             this.personnaliserToolStripMenuItem,
             this.optionsToolStripMenuItem});
       this.outilsToolStripMenuItem.Name = "outilsToolStripMenuItem";
-      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+      this.outilsToolStripMenuItem.Size = new System.Drawing.Size(50, 19);
       this.outilsToolStripMenuItem.Text = "&Outils";
       // 
       // personnaliserToolStripMenuItem
       // 
       this.personnaliserToolStripMenuItem.Name = "personnaliserToolStripMenuItem";
-      this.personnaliserToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.personnaliserToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.personnaliserToolStripMenuItem.Text = "&Personnaliser";
       // 
       // optionsToolStripMenuItem
       // 
       this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
       this.optionsToolStripMenuItem.Text = "&Options";
       // 
       // aideToolStripMenuItem
@@ -288,56 +296,103 @@
             this.toolStripSeparator5,
             this.àproposdeToolStripMenuItem});
       this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
-      this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+      this.aideToolStripMenuItem.Size = new System.Drawing.Size(43, 19);
       this.aideToolStripMenuItem.Text = "&Aide";
       // 
       // sommaireToolStripMenuItem
       // 
       this.sommaireToolStripMenuItem.Name = "sommaireToolStripMenuItem";
-      this.sommaireToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.sommaireToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.sommaireToolStripMenuItem.Text = "&Sommaire";
       // 
       // indexToolStripMenuItem
       // 
       this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-      this.indexToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.indexToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.indexToolStripMenuItem.Text = "&Index";
       // 
       // rechercherToolStripMenuItem
       // 
       this.rechercherToolStripMenuItem.Name = "rechercherToolStripMenuItem";
-      this.rechercherToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.rechercherToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.rechercherToolStripMenuItem.Text = "&Rechercher";
       // 
       // toolStripSeparator5
       // 
       this.toolStripSeparator5.Name = "toolStripSeparator5";
-      this.toolStripSeparator5.Size = new System.Drawing.Size(6, 6);
+      this.toolStripSeparator5.Size = new System.Drawing.Size(144, 6);
       // 
       // àproposdeToolStripMenuItem
       // 
       this.àproposdeToolStripMenuItem.Name = "àproposdeToolStripMenuItem";
-      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.àproposdeToolStripMenuItem.Text = "À &propos de...";
       // 
       // listBoxWords
       // 
       this.listBoxWords.FormattingEnabled = true;
-      this.listBoxWords.Location = new System.Drawing.Point(781, 92);
+      this.listBoxWords.ItemHeight = 20;
+      this.listBoxWords.Location = new System.Drawing.Point(894, 142);
+      this.listBoxWords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.listBoxWords.Name = "listBoxWords";
-      this.listBoxWords.Size = new System.Drawing.Size(250, 732);
+      this.listBoxWords.Size = new System.Drawing.Size(216, 924);
+      this.listBoxWords.Sorted = true;
       this.listBoxWords.TabIndex = 3;
+      // 
+      // labelLanguage
+      // 
+      this.labelLanguage.AutoSize = true;
+      this.labelLanguage.Location = new System.Drawing.Point(630, 142);
+      this.labelLanguage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.labelLanguage.Name = "labelLanguage";
+      this.labelLanguage.Size = new System.Drawing.Size(81, 20);
+      this.labelLanguage.TabIndex = 4;
+      this.labelLanguage.Text = "Language";
+      // 
+      // comboBoxLanguage
+      // 
+      this.comboBoxLanguage.FormattingEnabled = true;
+      this.comboBoxLanguage.Location = new System.Drawing.Point(634, 200);
+      this.comboBoxLanguage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.comboBoxLanguage.Name = "comboBoxLanguage";
+      this.comboBoxLanguage.Size = new System.Drawing.Size(180, 28);
+      this.comboBoxLanguage.TabIndex = 5;
+      // 
+      // progressBarMain
+      // 
+      this.progressBarMain.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.progressBarMain.Location = new System.Drawing.Point(0, 1141);
+      this.progressBarMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.progressBarMain.Name = "progressBarMain";
+      this.progressBarMain.Size = new System.Drawing.Size(1758, 40);
+      this.progressBarMain.TabIndex = 6;
+      // 
+      // labelCount
+      // 
+      this.labelCount.AutoSize = true;
+      this.labelCount.Location = new System.Drawing.Point(890, 1086);
+      this.labelCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.labelCount.Name = "labelCount";
+      this.labelCount.Size = new System.Drawing.Size(65, 20);
+      this.labelCount.TabIndex = 7;
+      this.labelCount.Text = "Count:0";
       // 
       // FormMain
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1172, 886);
+      this.ClientSize = new System.Drawing.Size(1758, 1181);
+      this.Controls.Add(this.labelCount);
+      this.Controls.Add(this.progressBarMain);
+      this.Controls.Add(this.comboBoxLanguage);
+      this.Controls.Add(this.labelLanguage);
       this.Controls.Add(this.listBoxWords);
       this.Controls.Add(this.buttonExtract);
       this.Controls.Add(this.textBoxSource);
       this.Controls.Add(this.menuStrip1);
+      this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.MainMenuStrip = this.menuStrip1;
+      this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.Name = "FormMain";
       this.Text = "Create Dictionary";
       this.Load += new System.EventHandler(this.FormMain_Load);
@@ -383,6 +438,10 @@
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     private System.Windows.Forms.ToolStripMenuItem àproposdeToolStripMenuItem;
     private System.Windows.Forms.ListBox listBoxWords;
+    private System.Windows.Forms.Label labelLanguage;
+    private System.Windows.Forms.ComboBox comboBoxLanguage;
+    private System.Windows.Forms.ProgressBar progressBarMain;
+    private System.Windows.Forms.Label labelCount;
   }
 }
 

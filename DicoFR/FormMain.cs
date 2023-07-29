@@ -17,19 +17,60 @@ namespace DicoFR
       InitializeComponent();
     }
 
-    private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
+    private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Application.Exit();
     }
 
     private void FormMain_Load(object sender, EventArgs e)
     {
+      LoadLanguageCombobox();
+    }
 
+    private void LoadLanguageCombobox()
+    {
+      comboBoxLanguage.Items.Clear();
+      comboBoxLanguage.Items.Add("French");
+      comboBoxLanguage.Items.Add("English");
+      comboBoxLanguage.Items.Add("Spanish");
+      comboBoxLanguage.Items.Add("German");
+      comboBoxLanguage.Items.Add("Italian");
+      comboBoxLanguage.SelectedIndex = 0;
     }
 
     private void ButtonExtract_Click(object sender, EventArgs e)
     {
+      if (string.IsNullOrEmpty(textBoxSource.Text))
+      {
+        return;
+      }
 
+      var sourceText = textBoxSource.Text;
+      var wordsArray = sourceText.Split(' ');
+      var listOfWords = new List<string>();
+      foreach ( var word in wordsArray )
+      {
+        if (!listOfWords.Contains(word))
+        {
+          listOfWords.Add(word);
+        }
+      }
+
+      listBoxWords.Items.Clear();
+      foreach ( var word in listOfWords )
+      {
+        listBoxWords.Items.Add(RemovePunctuation(word));
+      }
+
+      labelCount.Text = $"Count: {listBoxWords.Items.Count}";
+    }
+
+    private string RemovePunctuation(string word)
+    {
+      word = word.Trim();
+      word = word.ToLower();
+      word = word.Replace(".", "");
+      return word;
     }
   }
 }
