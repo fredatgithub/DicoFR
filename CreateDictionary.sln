@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateDictionary", "DicoFR\CreateDictionary.csproj", "{A3BA4EB7-FD32-4A66-9240-9EDCD74B596B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordLibrary", "WordLibrary\WordLibrary.csproj", "{CFFEAD24-B585-41E7-8BEE-C69342FF0C55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A3BA4EB7-FD32-4A66-9240-9EDCD74B596B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3BA4EB7-FD32-4A66-9240-9EDCD74B596B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3BA4EB7-FD32-4A66-9240-9EDCD74B596B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFFEAD24-B585-41E7-8BEE-C69342FF0C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFEAD24-B585-41E7-8BEE-C69342FF0C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFEAD24-B585-41E7-8BEE-C69342FF0C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFFEAD24-B585-41E7-8BEE-C69342FF0C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
