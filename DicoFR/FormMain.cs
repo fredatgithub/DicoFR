@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace DicoFR
@@ -48,7 +43,7 @@ namespace DicoFR
       var sourceText = textBoxSource.Text;
       var wordsArray = sourceText.Split(' ');
       var listOfWords = new List<string>();
-      foreach ( var word in wordsArray )
+      foreach (var word in wordsArray)
       {
         if (!listOfWords.Contains(word))
         {
@@ -57,12 +52,32 @@ namespace DicoFR
       }
 
       listBoxWords.Items.Clear();
-      foreach ( var word in listOfWords )
+      foreach (var word in listOfWords)
       {
-        listBoxWords.Items.Add(RemovePunctuation(word));
+        var newWord = RemovePunctuation(word);
+        if (newWord.Contains("'"))
+        {
+          listBoxWords.Items.Add(newWord.Substring(0, 2));
+          AddVerification(newWord);
+          listBoxWords.Items.Add(newWord.Substring(2, newWord.Length - 2));
+          AddVerification(newWord);
+          continue;
+        }
+
+        if (!string.IsNullOrEmpty(newWord))
+        {
+          listBoxWords.Items.Add(newWord);
+          AddVerification(newWord);
+        }
+
       }
 
       labelCount.Text = $"Count: {listBoxWords.Items.Count}";
+    }
+
+    private void AddVerification(string newWord)
+    {
+      textBoxVerif.Text += $"{newWord}{Environment.NewLine}";
     }
 
     private string RemovePunctuation(string word)
@@ -70,7 +85,21 @@ namespace DicoFR
       word = word.Trim();
       word = word.ToLower();
       word = word.Replace(".", "");
+      // remove numbers
+      if (RemoveNumbers(word).Length == 0)
+      {
+        return string.Empty;
+      }
+
+      word = RemoveNumbers(word).Trim();
       return word;
+    }
+
+    public static string RemoveNumbers(string input)
+    {
+      // Use a regular expression to match any digit (\d) and replace it with an empty string.
+      string result = Regex.Replace(input, @"\d", "");
+      return result;
     }
   }
 }

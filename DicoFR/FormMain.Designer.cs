@@ -66,6 +66,7 @@
       this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
       this.progressBarMain = new System.Windows.Forms.ProgressBar();
       this.labelCount = new System.Windows.Forms.Label();
+      this.textBoxVerif = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -377,11 +378,22 @@
       this.labelCount.TabIndex = 7;
       this.labelCount.Text = "Count:0";
       // 
+      // textBoxVerif
+      // 
+      this.textBoxVerif.Location = new System.Drawing.Point(1152, 142);
+      this.textBoxVerif.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.textBoxVerif.Multiline = true;
+      this.textBoxVerif.Name = "textBoxVerif";
+      this.textBoxVerif.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+      this.textBoxVerif.Size = new System.Drawing.Size(236, 924);
+      this.textBoxVerif.TabIndex = 8;
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1758, 1181);
+      this.Controls.Add(this.textBoxVerif);
       this.Controls.Add(this.labelCount);
       this.Controls.Add(this.progressBarMain);
       this.Controls.Add(this.comboBoxLanguage);
@@ -395,6 +407,7 @@
       this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.Name = "FormMain";
       this.Text = "Create Dictionary";
+      this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.Load += new System.EventHandler(this.FormMain_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
@@ -442,6 +455,7 @@
     private System.Windows.Forms.ComboBox comboBoxLanguage;
     private System.Windows.Forms.ProgressBar progressBarMain;
     private System.Windows.Forms.Label labelCount;
+    private System.Windows.Forms.TextBox textBoxVerif;
   }
 }
 
