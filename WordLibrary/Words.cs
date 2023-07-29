@@ -50,6 +50,7 @@ namespace WordLibrary
       word = word.Replace("!", "");
       word = word.Replace("<", "");
       word = word.Replace(">", "");
+      word = word.Replace("?", "");
       return word;
     }
 
@@ -63,7 +64,7 @@ namespace WordLibrary
         result += "|";
         result += word.Substring(position + 1);
       }
-      else
+      else //|| word == "a-t-il"
       {
         result = word;
       }
