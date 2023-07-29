@@ -60,29 +60,37 @@ namespace DicoFR
         {
           var position = newWord.IndexOf("|");
           var splittedNewWord = newWord.Substring(0, position);
-          listBoxWords.Items.Add(splittedNewWord);
-          AddVerification(splittedNewWord);
+          AddToListBox(AddIfNotAlreadyIn(splittedNewWord, listBoxWords), listBoxWords);
+          AddToTextBox(AddIfNotAlreadyIn(splittedNewWord, textBoxVerif), textBoxVerif);
           splittedNewWord = newWord.Substring(position + 1);
-          listBoxWords.Items.Add(splittedNewWord);
-          AddVerification(splittedNewWord);
+          AddToListBox(AddIfNotAlreadyIn(splittedNewWord, listBoxWords), listBoxWords);
+          AddToTextBox(AddIfNotAlreadyIn(splittedNewWord, textBoxVerif), textBoxVerif);
           continue;
         }
 
         if (!string.IsNullOrEmpty(newWord))
         {
-          listBoxWords.Items.Add(AddIfNotAlreadyIn(newWord, listBoxWords));
-          AddVerification(AddIfNotAlreadyIn(newWord, textBoxVerif));
+          AddToListBox(AddIfNotAlreadyIn(newWord, listBoxWords), listBoxWords);
+          AddToTextBox(AddIfNotAlreadyIn(newWord, textBoxVerif), textBoxVerif);
         }
       }
 
       labelCount.Text = $"Count: {listBoxWords.Items.Count}";
     }
 
-    private void AddVerification(string newWord)
+    private void AddToListBox(string word, ListBox listBox)
     {
-      if (!string.IsNullOrEmpty(newWord))
+      if (!string.IsNullOrEmpty(word))
       {
-        textBoxVerif.Text += $"{newWord}{Environment.NewLine}";
+        listBox.Items.Add(word);
+      }
+    }
+
+    private void AddToTextBox(string word, TextBox textBox)
+    {
+      if (!string.IsNullOrEmpty(word))
+      {
+        textBox.Text += $"{word}{Environment.NewLine}";
       }
     }
 
