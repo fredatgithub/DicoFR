@@ -162,7 +162,7 @@ namespace DicoFR
         }
       }
 
-      if (originalMasterCount <= masterFilenamecontent.Count)
+      if (originalMasterCount < masterFilenamecontent.Count)
       {
         var result = WriteListboxToFile(masterFilenamecontent, masterFilename);
         if (result)
@@ -208,9 +208,9 @@ namespace DicoFR
       {
         using (StreamReader sr = new StreamReader(masterFilename))
         {
-          while (sr.Read() != -1)
+          string line;
+          while ((line = sr.ReadLine()) != null)
           {
-            var line = sr.ReadLine();
             if (!string.IsNullOrEmpty(line))
             {
               result.Add(line);
@@ -225,6 +225,7 @@ namespace DicoFR
 
       return result;
     }
+
 
     private void ComboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
     {
