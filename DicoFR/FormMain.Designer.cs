@@ -69,6 +69,10 @@
       this.textBoxVerif = new System.Windows.Forms.TextBox();
       this.buttonSaveToFile = new System.Windows.Forms.Button();
       this.buttonAddToMasterFile = new System.Windows.Forms.Button();
+      this.buttonDeleteWord = new System.Windows.Forms.Button();
+      this.toolStripMenuILanguage = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuFrench = new System.Windows.Forms.ToolStripMenuItem();
+      this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -99,6 +103,7 @@
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
             this.editionToolStripMenuItem,
+            this.toolStripMenuILanguage,
             this.outilsToolStripMenuItem,
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -281,13 +286,13 @@
       // personnaliserToolStripMenuItem
       // 
       this.personnaliserToolStripMenuItem.Name = "personnaliserToolStripMenuItem";
-      this.personnaliserToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+      this.personnaliserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.personnaliserToolStripMenuItem.Text = "&Personnaliser";
       // 
       // optionsToolStripMenuItem
       // 
       this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.optionsToolStripMenuItem.Text = "&Options";
       // 
       // aideToolStripMenuItem
@@ -393,7 +398,7 @@
       // 
       // buttonSaveToFile
       // 
-      this.buttonSaveToFile.Location = new System.Drawing.Point(634, 308);
+      this.buttonSaveToFile.Location = new System.Drawing.Point(634, 363);
       this.buttonSaveToFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonSaveToFile.Name = "buttonSaveToFile";
       this.buttonSaveToFile.Size = new System.Drawing.Size(112, 35);
@@ -404,7 +409,7 @@
       // 
       // buttonAddToMasterFile
       // 
-      this.buttonAddToMasterFile.Location = new System.Drawing.Point(634, 353);
+      this.buttonAddToMasterFile.Location = new System.Drawing.Point(634, 408);
       this.buttonAddToMasterFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.buttonAddToMasterFile.Name = "buttonAddToMasterFile";
       this.buttonAddToMasterFile.Size = new System.Drawing.Size(151, 35);
@@ -413,11 +418,44 @@
       this.buttonAddToMasterFile.UseVisualStyleBackColor = true;
       this.buttonAddToMasterFile.Click += new System.EventHandler(this.ButtonAddToMasterFile_Click);
       // 
+      // buttonDeleteWord
+      // 
+      this.buttonDeleteWord.Location = new System.Drawing.Point(634, 318);
+      this.buttonDeleteWord.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.buttonDeleteWord.Name = "buttonDeleteWord";
+      this.buttonDeleteWord.Size = new System.Drawing.Size(130, 35);
+      this.buttonDeleteWord.TabIndex = 11;
+      this.buttonDeleteWord.Text = "Delete word -->";
+      this.buttonDeleteWord.UseVisualStyleBackColor = true;
+      this.buttonDeleteWord.Click += new System.EventHandler(this.ButtonDeleteWord_Click);
+      // 
+      // toolStripMenuILanguage
+      // 
+      this.toolStripMenuILanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuFrench,
+            this.englishToolStripMenuItem});
+      this.toolStripMenuILanguage.Name = "toolStripMenuILanguage";
+      this.toolStripMenuILanguage.Size = new System.Drawing.Size(71, 19);
+      this.toolStripMenuILanguage.Text = "Language";
+      // 
+      // toolStripMenuFrench
+      // 
+      this.toolStripMenuFrench.Name = "toolStripMenuFrench";
+      this.toolStripMenuFrench.Size = new System.Drawing.Size(180, 22);
+      this.toolStripMenuFrench.Text = "French";
+      // 
+      // englishToolStripMenuItem
+      // 
+      this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+      this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.englishToolStripMenuItem.Text = "English";
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1758, 1181);
+      this.Controls.Add(this.buttonDeleteWord);
       this.Controls.Add(this.buttonAddToMasterFile);
       this.Controls.Add(this.buttonSaveToFile);
       this.Controls.Add(this.textBoxVerif);
@@ -435,6 +473,7 @@
       this.Name = "FormMain";
       this.Text = "Create Dictionary";
       this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
       this.Load += new System.EventHandler(this.FormMain_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
@@ -485,6 +524,10 @@
     private System.Windows.Forms.TextBox textBoxVerif;
     private System.Windows.Forms.Button buttonSaveToFile;
     private System.Windows.Forms.Button buttonAddToMasterFile;
+    private System.Windows.Forms.Button buttonDeleteWord;
+    private System.Windows.Forms.ToolStripMenuItem toolStripMenuILanguage;
+    private System.Windows.Forms.ToolStripMenuItem toolStripMenuFrench;
+    private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
   }
 }
 

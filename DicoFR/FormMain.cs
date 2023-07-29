@@ -1,8 +1,12 @@
-﻿using System;
+﻿using CreateDictionary.Properties;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using WordLibrary;
 
 namespace DicoFR
@@ -17,6 +21,8 @@ namespace DicoFR
     private List<string> finalListOfWords = new List<string>();
     private string masterFilename = "MasterList.txt";
     private string languageUsed = "French";
+    private readonly Dictionary<string, string> languageDicoEn = new Dictionary<string, string>();
+    private readonly Dictionary<string, string> languageDicoFr = new Dictionary<string, string>();
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -28,6 +34,10 @@ namespace DicoFR
       LoadLanguageCombobox();
       SetUsedLanguage();
       finalListOfWords.OrderBy(x => x).ToList();
+      GetWindowValue();
+      DisplayTitle();
+      LoadLanguages();
+      SetLanguage(Settings.Default.LastLanguageUsed);
     }
 
     private void SetUsedLanguage()
@@ -54,7 +64,7 @@ namespace DicoFR
         return;
       }
 
-      
+
       var sourceText = textBoxSource.Text;
       var wordsArray = sourceText.Split(' ');
       var listOfWords = new List<string>();
@@ -90,6 +100,11 @@ namespace DicoFR
         }
       }
 
+      CountListBoxWords();
+    }
+
+    private void CountListBoxWords()
+    {
       labelCount.Text = $"Count: {listBoxWords.Items.Count}";
     }
 
@@ -230,6 +245,201 @@ namespace DicoFR
     private void ComboBoxLanguage_SelectedIndexChanged(object sender, EventArgs e)
     {
       SetUsedLanguage();
+    }
+
+    private void ButtonDeleteWord_Click(object sender, EventArgs e)
+    {
+      if (listBoxWords.Items.Count == 0)
+      {
+        MessageBox.Show("The list box is empty");
+        return;
+      }
+
+      if (listBoxWords.SelectedIndex == -1)
+      {
+        MessageBox.Show("Please select a word in the listbox");
+        return;
+      }
+
+      listBoxWords.Items.RemoveAt(listBoxWords.SelectedIndex);
+      CountListBoxWords();
+    }
+
+    private void SaveWindowValue()
+    {
+      Settings.Default.WindowHeight = Height;
+      Settings.Default.WindowWidth = Width;
+      Settings.Default.WindowLeft = Left;
+      Settings.Default.WindowTop = Top;
+      Settings.Default.textBoxSource = textBoxSource.Text;
+      //Settings.Default.LastLanguageUsed = frenchToolStripMenuItem.Checked ? "French" : "English";
+      Settings.Default.Save();
+    }
+
+    private void GetWindowValue()
+    {
+      Width = Settings.Default.WindowWidth;
+      Height = Settings.Default.WindowHeight;
+      Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
+      Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
+      textBoxSource.Text = Settings.Default.textBoxSource;
+    }
+
+    private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      SaveWindowValue();
+    }
+
+    private void DisplayTitle()
+    {
+      Assembly assembly = Assembly.GetExecutingAssembly();
+      FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+      Text += string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
+    }
+
+    private void frenchToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      SetLanguage(Language.French.ToString());
+    }
+
+    private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      SetLanguage(Language.English.ToString());
+    }
+
+    // copy the following methods if you don't have them yet (you shouldn't)
+
+    private void SetLanguage(string myLanguage)
+    {
+      switch (myLanguage)
+      {
+        case "English":
+          toolStripMenuFrench.Checked = false;
+          englishToolStripMenuItem.Checked = true;
+          fichierToolStripMenuItem.Text = languageDicoEn["MenuFile"];
+          nouveauToolStripMenuItem.Text = languageDicoEn["MenuFileNew"];
+          ouvrirToolStripMenuItem.Text = languageDicoEn["MenuFileOpen"];
+          enregistrerToolStripMenuItem.Text = languageDicoEn["MenuFileSave"];
+          enregistrersousToolStripMenuItem.Text = languageDicoEn["MenuFileSaveAs"];
+          aperçuavantimpressionToolStripMenuItem.Text = languageDicoEn["MenuFilePrint"];
+          imprimerToolStripMenuItem.Text = languageDicoEn["MenufilePageSetup"];
+          quitterToolStripMenuItem.Text = languageDicoEn["MenufileQuit"];
+          editionToolStripMenuItem.Text = languageDicoEn["MenuEdit"];
+          annulerToolStripMenuItem.Text = languageDicoEn["MenuEditCancel"];
+          rétablirToolStripMenuItem.Text = languageDicoEn["MenuEditRedo"];
+          couperToolStripMenuItem.Text = languageDicoEn["MenuEditCut"];
+          copierToolStripMenuItem.Text = languageDicoEn["MenuEditCopy"];
+          collerToolStripMenuItem.Text = languageDicoEn["MenuEditPaste"];
+          sélectionnertoutToolStripMenuItem.Text = languageDicoEn["MenuEditSelectAll"];
+          //toolsToolStripMenuItem.Text = languageDicoEn["MenuTools"];
+          //personalizeToolStripMenuItem.Text = languageDicoEn["MenuToolsCustomize"];
+          //optionsToolStripMenuItem.Text = languageDicoEn["MenuToolsOptions"];
+          //languagetoolStripMenuItem.Text = languageDicoEn["MenuLanguage"];
+          //englishToolStripMenuItem.Text = languageDicoEn["MenuLanguageEnglish"];
+          //frenchToolStripMenuItem.Text = languageDicoEn["MenuLanguageFrench"];
+          //helpToolStripMenuItem.Text = languageDicoEn["MenuHelp"];
+          //summaryToolStripMenuItem.Text = languageDicoEn["MenuHelpSummary"];
+          //indexToolStripMenuItem.Text = languageDicoEn["MenuHelpIndex"];
+          //searchToolStripMenuItem.Text = languageDicoEn["MenuHelpSearch"];
+          //aboutToolStripMenuItem.Text = languageDicoEn["MenuHelpAbout"];
+
+          break;
+        case "French":
+          toolStripMenuFrench.Checked = true;
+          englishToolStripMenuItem.Checked = false;
+          fichierToolStripMenuItem.Text = languageDicoFr["MenuFile"];
+          nouveauToolStripMenuItem.Text = languageDicoFr["MenuFileNew"];
+          ouvrirToolStripMenuItem.Text = languageDicoFr["MenuFileOpen"];
+          enregistrerToolStripMenuItem.Text = languageDicoFr["MenuFileSave"];
+          enregistrersousToolStripMenuItem.Text = languageDicoFr["MenuFileSaveAs"];
+          aperçuavantimpressionToolStripMenuItem.Text = languageDicoFr["MenuFilePrint"];
+          imprimerToolStripMenuItem.Text = languageDicoFr["MenufilePageSetup"];
+          quitterToolStripMenuItem.Text = languageDicoFr["MenufileQuit"];
+          editionToolStripMenuItem.Text = languageDicoFr["MenuEdit"];
+          annulerToolStripMenuItem.Text = languageDicoFr["MenuEditCancel"];
+          rétablirToolStripMenuItem.Text = languageDicoFr["MenuEditRedo"];
+          couperToolStripMenuItem.Text = languageDicoFr["MenuEditCut"];
+          copierToolStripMenuItem.Text = languageDicoFr["MenuEditCopy"];
+          collerToolStripMenuItem.Text = languageDicoFr["MenuEditPaste"];
+          sélectionnertoutToolStripMenuItem.Text = languageDicoFr["MenuEditSelectAll"];
+          //toolsToolStripMenuItem.Text = languageDicoFr["MenuTools"];
+          //personalizeToolStripMenuItem.Text = languageDicoFr["MenuToolsCustomize"];
+          //optionsToolStripMenuItem.Text = languageDicoFr["MenuToolsOptions"];
+          //languagetoolStripMenuItem.Text = languageDicoFr["MenuLanguage"];
+          //englishToolStripMenuItem.Text = languageDicoFr["MenuLanguageEnglish"];
+          //frenchToolStripMenuItem.Text = languageDicoFr["MenuLanguageFrench"];
+          //helpToolStripMenuItem.Text = languageDicoFr["MenuHelp"];
+          //summaryToolStripMenuItem.Text = languageDicoFr["MenuHelpSummary"];
+          //indexToolStripMenuItem.Text = languageDicoFr["MenuHelpIndex"];
+          //searchToolStripMenuItem.Text = languageDicoFr["MenuHelpSearch"];
+          //aboutToolStripMenuItem.Text = languageDicoFr["MenuHelpAbout"];
+
+          break;
+
+      }
+    }
+       
+    public enum Language
+    {
+      French,
+      English
+    }
+
+    private void LoadLanguages()
+    {
+      if (!File.Exists(Settings.Default.LanguageFileName))
+      {
+        CreateLanguageFile();
+      }
+
+      // read the translation file and feed the language
+      XDocument xDoc = XDocument.Load(Settings.Default.LanguageFileName);
+      var result = from node in xDoc.Descendants("term")
+                   where node.HasElements
+                   let xElementName = node.Element("name")
+                   where xElementName != null
+                   let xElementEnglish = node.Element("englishValue")
+                   where xElementEnglish != null
+                   let xElementFrench = node.Element("frenchValue")
+                   where xElementFrench != null
+                   select new
+                   {
+                     name = xElementName.Value,
+                     englishValue = xElementEnglish.Value,
+                     frenchValue = xElementFrench.Value
+                   };
+      foreach (var i in result)
+      {
+        languageDicoEn.Add(i.name, i.englishValue);
+        languageDicoFr.Add(i.name, i.frenchValue);
+      }
+    }
+
+    private static void CreateLanguageFile()
+    {
+      var minimumVersion = new List<string>
+          {
+            "<?xml version=\"1.0\" encoding=\"utf - 8\" ?>",
+            "<Document>",
+            "<DocumentVersion>",
+            "<version> 1.0 </version>",
+            "</DocumentVersion>",
+            "<terms>",
+             "<term>",
+            "<name>MenuFile</name>",
+            "<englishValue>File</englishValue>",
+            "<frenchValue>Fichier</frenchValue>",
+            "</term>",
+            "  </terms>",
+            "</Document>"
+          };
+      StreamWriter sw = new StreamWriter(Settings.Default.LanguageFileName);
+      foreach (string item in minimumVersion)
+      {
+        sw.WriteLine(item);
+      }
+
+      sw.Close();
     }
   }
 }

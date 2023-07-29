@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace WordLibrary
 {
@@ -15,15 +16,40 @@ namespace WordLibrary
     {
       word = word.Trim();
       word = word.ToLower();
-      word = word.Replace(".", "");
-      word = word.Replace(",", "");
-      word = word.Replace(":", "");
+      word = RemoveSymbols(word);
+
       if (RemoveNumbers(word).Length == 0)
       {
         return string.Empty;
       }
 
       word = RemoveNumbers(word).Trim();
+      return word;
+    }
+
+    private static string RemoveSymbols(string word)
+    {
+      if (word == "aujourd'hui" || word == "ci-dessous" || word == "ci-dessus")
+      {
+        return word;
+      }
+
+      word = word.Replace(".", "");
+      word = word.Replace(",", "");
+      word = word.Replace(":", "");
+      word = word.Replace("«", "");
+      word = word.Replace("»", "");
+      word = word.Replace("(", "");
+      word = word.Replace(")", "");
+      word = word.Replace("{", "");
+      word = word.Replace("}", "");
+      word = word.Replace("+", "");
+      word = word.Replace("-", "");
+      word = word.Replace(";", "");
+      word = word.Replace("\"", "");
+      word = word.Replace("!", "");
+      word = word.Replace("<", "");
+      word = word.Replace(">", "");
       return word;
     }
 
