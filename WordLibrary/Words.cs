@@ -64,7 +64,7 @@ namespace WordLibrary
         result += "|";
         result += word.Substring(position + 1);
       }
-      else //|| word == "a-t-il"
+      else //|| word == "a-t-il" || word = "vingt-deux"
       {
         result = word;
       }
