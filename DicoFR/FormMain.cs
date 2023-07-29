@@ -57,9 +57,10 @@ namespace DicoFR
         var newWord = RemovePunctuation(word);
         if (newWord.Contains("'"))
         {
-          listBoxWords.Items.Add(newWord.Substring(0, 2));
+          int position = newWord.IndexOf("'");
+          listBoxWords.Items.Add(newWord.Substring(0, position));
           AddVerification(newWord);
-          listBoxWords.Items.Add(newWord.Substring(2, newWord.Length - 2));
+          listBoxWords.Items.Add(newWord.Substring(position + 1));
           AddVerification(newWord);
           continue;
         }
@@ -85,6 +86,7 @@ namespace DicoFR
       word = word.Trim();
       word = word.ToLower();
       word = word.Replace(".", "");
+      word = word.Replace(",", "");
       // remove numbers
       if (RemoveNumbers(word).Length == 0)
       {
